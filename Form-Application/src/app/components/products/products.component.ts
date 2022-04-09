@@ -18,8 +18,6 @@ export class ProductsComponent implements OnInit {
   isDataUploading = false;
   public products: Product[] = [];
 
-  @Output() productAddEvent: EventEmitter<void> = new EventEmitter<void>();
-
   constructor(
     private fb: FormBuilder,
     private productService: ProductsService
@@ -43,14 +41,18 @@ export class ProductsComponent implements OnInit {
     const values = this.productForm.value as Product;
     this.isDataUploading = true;
     this.productService.addProduct(values as Product).subscribe((res) => {
-      this.productAddEvent.emit();
       this.isDataUploading = false;
       this.productForm.reset();
+      this.refresh();
     });
+    
   }
 
-  onCancel(){
+  onCancel() {
     this.productForm.reset();
   }
 
+  refresh(){
+    this.getProducts();
+  }
 }
