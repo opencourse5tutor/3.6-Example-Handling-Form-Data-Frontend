@@ -1,3 +1,64 @@
-<p>
-  products works!
-</p>
+<div class="row">
+  <div class="col-3">
+    <div class="row pr-0">
+      <div class="col-11">
+        <h1 class="pr-name m-3">List of products:</h1>
+        <ul>
+          <li *ngFor="let product of products">{{product.productName}}</li>
+        </ul>
+      </div>
+      <div class="col-1 mt-3">
+        <div class="vertical d-flex m-0 p-0">
+          <div class="vr"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="add-product-section m-3">
+      <div class="box-head">
+        <h1 class="pr-name">Add a new product</h1>
+      </div>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row g-3">
+        <div class="form-group">
+          <label class="form-label">Product Name</label>
+          <input type="text" class="form-control" formControlName="productName">
+          <div
+            *ngIf="f['productName'].touched && f['productName'].invalid && f['productName'].errors && f['productName'].errors['required']"
+            class="error">
+            Product name is required.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Product Description</label>
+          <input type="text" class="form-control" formControlName="description">
+          <div
+            *ngIf="f['description'].touched && f['description'].invalid && f['description'].errors && f['description'].errors['required']"
+            class="error">
+            Product description is required.</div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label">Unit Price</label>
+              <input type="number" class="form-control" formControlName="unitPrice">
+              <div
+                *ngIf="f['unitPrice'].touched && f['unitPrice'].invalid && f['unitPrice'].errors && f['unitPrice'].errors['required']"
+                class="error">Unit Price is required</div>
+              <div
+                *ngIf="f['unitPrice'].touched && f['unitPrice'].invalid && f['unitPrice'].errors && f['unitPrice'].errors['min']"
+                class="error">Unit Price should be a valid value</div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 text-end mt-5">
+          <button type="button" class="btn btn btn-outline-secondary me-2" (click)="onCancel()">Cancel</button>
+          <button type="submit" [disabled]="!productForm.valid" class="btn btn-outline-primary">Submit<i
+              *ngIf="isDataUploading" class="fa fa-spinner fa-pulse fa-fw"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
