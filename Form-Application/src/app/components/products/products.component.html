@@ -1,19 +1,17 @@
 <div class="row">
+  <!--Product List Section-->
   <div class="col-3">
     <div class="row pr-0">
-      <div class="col-11">
+      <div class="col-12">
         <h1 class="pr-name m-3">List of products:</h1>
         <ul>
           <li *ngFor="let product of products">{{product.productName}}</li>
         </ul>
       </div>
-      <div class="col-1 mt-3">
-        <div class="vertical d-flex m-0 p-0">
-          <div class="vr"></div>
-        </div>
-      </div>
     </div>
   </div>
+
+  <!--Add Product Form section-->
   <div class="col-9">
     <div class="add-product-section m-3">
       <div class="box-head">

@@ -17,6 +17,7 @@ export class ProductsService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
+  //Store new product data
   addProduct(product: Product): Observable<AddProductResponse> {
     return this.http.post<AddProductResponse>(
       this.baseUrl + 'api/products',
@@ -25,6 +26,7 @@ export class ProductsService {
     );
   }
 
+  //Retrieve all product data
   getProducts(): Observable<ProductResponse> {
     return this.http.get<ProductResponse>(this.baseUrl + 'api/products');
   }

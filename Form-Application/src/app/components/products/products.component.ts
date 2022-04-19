@@ -31,12 +31,14 @@ export class ProductsComponent implements OnInit {
     return this.productForm.controls;
   }
 
+  //Retreive all product data
   getProducts() {
     this.productService.getProducts().subscribe((res) => {
       this.products = res.data;
     });
   }
 
+  //Submit the form
   onSubmit() {
     const values = this.productForm.value as Product;
     this.isDataUploading = true;
